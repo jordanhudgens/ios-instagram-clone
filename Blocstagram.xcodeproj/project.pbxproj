@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84C1A94D196F4BC7003A271D /* BLCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A94C196F4BC7003A271D /* BLCUser.m */; };
 		84CED063196DCE1B007AFA71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CED062196DCE1B007AFA71 /* Foundation.framework */; };
 		84CED065196DCE1B007AFA71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CED064196DCE1B007AFA71 /* CoreGraphics.framework */; };
 		84CED067196DCE1B007AFA71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CED066196DCE1B007AFA71 /* UIKit.framework */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84C1A94B196F4BC7003A271D /* BLCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCUser.h; sourceTree = "<group>"; };
+		84C1A94C196F4BC7003A271D /* BLCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCUser.m; sourceTree = "<group>"; };
 		84CED05F196DCE1B007AFA71 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CED062196DCE1B007AFA71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84CED064196DCE1B007AFA71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 				84CED069196DCE1B007AFA71 /* Supporting Files */,
 				84CED0A6196DCFF4007AFA71 /* BLCImagesTableViewController.h */,
 				84CED0A7196DCFF4007AFA71 /* BLCImagesTableViewController.m */,
+				84C1A94B196F4BC7003A271D /* BLCUser.h */,
+				84C1A94C196F4BC7003A271D /* BLCUser.m */,
 			);
 			path = Blocstagram;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C1A94D196F4BC7003A271D /* BLCUser.m in Sources */,
 				84CED073196DCE1B007AFA71 /* BLCAppDelegate.m in Sources */,
 				84CED06F196DCE1B007AFA71 /* main.m in Sources */,
 				84CED0A8196DCFF4007AFA71 /* BLCImagesTableViewController.m in Sources */,
@@ -494,6 +500,7 @@
 				84CED08D196DCE1B007AFA71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84CED08E196DCE1B007AFA71 /* Build configuration list for PBXNativeTarget "BlocstagramTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +509,7 @@
 				84CED090196DCE1B007AFA71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
