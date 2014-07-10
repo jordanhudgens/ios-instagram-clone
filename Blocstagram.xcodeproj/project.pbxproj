@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		84C1A94D196F4BC7003A271D /* BLCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A94C196F4BC7003A271D /* BLCUser.m */; };
+		84C1A950196F4CF8003A271D /* BLCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A94F196F4CF8003A271D /* BLCMedia.m */; };
+		84C1A953196F4EC0003A271D /* BLCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A952196F4EC0003A271D /* BLCComment.m */; };
 		84CED063196DCE1B007AFA71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CED062196DCE1B007AFA71 /* Foundation.framework */; };
 		84CED065196DCE1B007AFA71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CED064196DCE1B007AFA71 /* CoreGraphics.framework */; };
 		84CED067196DCE1B007AFA71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CED066196DCE1B007AFA71 /* UIKit.framework */; };
@@ -46,6 +48,10 @@
 /* Begin PBXFileReference section */
 		84C1A94B196F4BC7003A271D /* BLCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCUser.h; sourceTree = "<group>"; };
 		84C1A94C196F4BC7003A271D /* BLCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCUser.m; sourceTree = "<group>"; };
+		84C1A94E196F4CF8003A271D /* BLCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMedia.h; sourceTree = "<group>"; };
+		84C1A94F196F4CF8003A271D /* BLCMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCMedia.m; sourceTree = "<group>"; };
+		84C1A951196F4EC0003A271D /* BLCComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCComment.h; sourceTree = "<group>"; };
+		84C1A952196F4EC0003A271D /* BLCComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCComment.m; sourceTree = "<group>"; };
 		84CED05F196DCE1B007AFA71 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CED062196DCE1B007AFA71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84CED064196DCE1B007AFA71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +148,10 @@
 				84CED0A7196DCFF4007AFA71 /* BLCImagesTableViewController.m */,
 				84C1A94B196F4BC7003A271D /* BLCUser.h */,
 				84C1A94C196F4BC7003A271D /* BLCUser.m */,
+				84C1A94E196F4CF8003A271D /* BLCMedia.h */,
+				84C1A94F196F4CF8003A271D /* BLCMedia.m */,
+				84C1A951196F4EC0003A271D /* BLCComment.h */,
+				84C1A952196F4EC0003A271D /* BLCComment.m */,
 			);
 			path = Blocstagram;
 			sourceTree = "<group>";
@@ -302,6 +312,8 @@
 				84CED073196DCE1B007AFA71 /* BLCAppDelegate.m in Sources */,
 				84CED06F196DCE1B007AFA71 /* main.m in Sources */,
 				84CED0A8196DCFF4007AFA71 /* BLCImagesTableViewController.m in Sources */,
+				84C1A950196F4CF8003A271D /* BLCMedia.m in Sources */,
+				84C1A953196F4EC0003A271D /* BLCComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
