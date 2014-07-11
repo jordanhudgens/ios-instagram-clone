@@ -14,7 +14,7 @@
 
 @interface BLCImagesTableViewController ()
 
-@property (nonatomic, strong) BLCDataSource *items;
+//@property (nonatomic, strong) BLCDataSource *items;
 
 @end
 
@@ -25,7 +25,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.items.mediaItems. = [NSMutableArray array];
+        
+//        [BLCDataSource sharedInstance].mediaItems = [NSMutableArray array];
     }
     return self;
 }
@@ -38,7 +39,7 @@
         NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
         UIImage *image = [UIImage imageNamed:imageName];
         if (image) {
-            [self.items.mediaItems addObject:image];
+//            [self.items.mediaItems addObject:image];
         }
     }
     
@@ -56,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.items.mediaItems.count;
+    return [self items].count;
 }
 
 
@@ -87,23 +88,27 @@
         [cell.contentView addSubview:imageView];
     }
     
-    BLCMedia *item = self.items.mediaItems[indexPath.row];
+    BLCMedia *item = [self items][indexPath.row];
     imageView.image = item.image;
     
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BLCMedia *item = self.items.mediaItems[indexPath.row];
+    BLCMedia *item = [self items][indexPath.row];
     UIImage *image = item.image;
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[BLCDataSource sharedInstance].mediaItems[indexPath.row] removeObjectAtIndex:indexPath.row];
+        [[self items] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (NSMutableArray *) items {
+    return [BLCDataSource sharedInstance].mediaItems;
 }
 
 @end
