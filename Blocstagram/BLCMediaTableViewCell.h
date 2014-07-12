@@ -14,4 +14,10 @@
 
 @property (nonatomic, strong) BLCMedia *mediaItem;
 
+- (BLCMedia *)mediaItem;
+
+- (void)setMediaItem:(BLCMedia *)mediaItem;
+
++ (CGFloat) heightForMediaItem:(BLCMedia *)mediaItem width:(CGFloat)width;
+
 @end

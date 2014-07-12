@@ -11,6 +11,7 @@
 #import "BLCMedia.h"
 #import "BLCUser.h"
 #import "BLCComment.h"
+#import "BLCMediaTableViewCell.h"
 
 @interface BLCImagesTableViewController ()
 
@@ -43,7 +44,7 @@
         }
     }
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
+    [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,41 +64,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*  dequeueReusableCellWithIdentifier:forIndexPath: takes the identifier string we provide it and compares it with its roster of registered table view cells. Remember, we registered the UITableViewCell class in viewDidLoad with the identifier, imageCell.
-     
-     Dequeue will either return:
-     
-     a brand new cell of the type we registered, or
-     a used one that is no longer visible on screen.
-     
-    */
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
-    
-    static NSInteger imageViewTag = 1234;
-    UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:imageViewTag];
-    
-    if (!imageView) {
-        // This is a new cell, it doesn't have an image associated with it yet
-        imageView = [[UIImageView alloc] init];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        
-        imageView.frame = cell.contentView.bounds;
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
-        imageView.tag = imageViewTag;
-        [cell.contentView addSubview:imageView];
-    }
-    
-    BLCMedia *item = [self items][indexPath.row];
-    imageView.image = item.image;
+    BLCMediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
+    cell.mediaItem = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
     
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     BLCMedia *item = [self items][indexPath.row];
-    UIImage *image = item.image;
-    return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
+    return [BLCMediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
