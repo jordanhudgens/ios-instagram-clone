@@ -44,6 +44,8 @@
         }
     }
     
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
 }
 
