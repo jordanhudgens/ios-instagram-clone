@@ -11,8 +11,9 @@
 #import "BLCMedia.h"
 #import "BLCComment.h"
 
-@interface BLCDataSource ()
-
+@interface BLCDataSource () {
+    NSMutableArray *_mediaItems;
+}
 
 @end
 
@@ -109,5 +110,30 @@
     
     return [NSString stringWithString:s];
 }
+
+# pragma mark - Key/Value Observing
+
+- (NSUInteger) countOfMediaItems {
+    return self.mediaItems.count;
+}
+
+- (id) objectInMediaItemsAtIndex:(NSUInteger)index {
+    return [self.mediaItems objectAtIndex:index];
+}
+
+- (NSArray *) mediaItemsAtIndexes:(NSIndexSet *)indexes {
+    return [self.mediaItems objectsAtIndexes:indexes];
+}
+
+- (void) insertObject:(BLCMedia *)object inMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems insertObject:object atIndex:index];
+}
+
+- (void) removeObjectFromMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems removeObjectAtIndex:index];
+}
+
+
+
 
 @end
