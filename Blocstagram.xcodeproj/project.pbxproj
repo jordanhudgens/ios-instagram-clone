@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843CCD5E1976DB1000AEDA34 /* BLCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843CCD5D1976DB1000AEDA34 /* BLCLoginViewController.m */; };
 		84BCB97119709588004F9BFD /* BLCMediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BCB97019709588004F9BFD /* BLCMediaTableViewCell.m */; };
 		84C1A94D196F4BC7003A271D /* BLCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A94C196F4BC7003A271D /* BLCUser.m */; };
 		84C1A950196F4CF8003A271D /* BLCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A94F196F4CF8003A271D /* BLCMedia.m */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		843CCD5C1976DB1000AEDA34 /* BLCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCLoginViewController.h; sourceTree = "<group>"; };
+		843CCD5D1976DB1000AEDA34 /* BLCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCLoginViewController.m; sourceTree = "<group>"; };
 		84BCB96F19709588004F9BFD /* BLCMediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMediaTableViewCell.h; sourceTree = "<group>"; };
 		84BCB97019709588004F9BFD /* BLCMediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCMediaTableViewCell.m; sourceTree = "<group>"; };
 		84C1A94B196F4BC7003A271D /* BLCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCUser.h; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				84C1A955196F50B7003A271D /* BLCDataSource.m */,
 				84BCB96F19709588004F9BFD /* BLCMediaTableViewCell.h */,
 				84BCB97019709588004F9BFD /* BLCMediaTableViewCell.m */,
+				843CCD5C1976DB1000AEDA34 /* BLCLoginViewController.h */,
+				843CCD5D1976DB1000AEDA34 /* BLCLoginViewController.m */,
 			);
 			path = Blocstagram;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				84C1A953196F4EC0003A271D /* BLCComment.m in Sources */,
 				84BCB97119709588004F9BFD /* BLCMediaTableViewCell.m in Sources */,
 				84C1A956196F50B7003A271D /* BLCDataSource.m in Sources */,
+				843CCD5E1976DB1000AEDA34 /* BLCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
