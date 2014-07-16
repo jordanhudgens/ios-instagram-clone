@@ -77,8 +77,24 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
     }
 }
 
+-(void) cancel{
+    [self.webView goBack];
+}
+
+
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *urlString = request.URL.absoluteString;
+    NSLog(@"URL STRING %@", urlString);
+    
+    NSRange redirectCheckRange = [urlString rangeOfString:@"jordanhudgens.com"];
+    
+    if (redirectCheckRange.length== 0) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    }
+    else{
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    
     if ([urlString hasPrefix:[self redirectURI]]) {
         NSRange rangeOfAccessTokenParameter = [urlString rangeOfString:@"access_token="];
         NSUInteger indexOfTokenStarting = rangeOfAccessTokenParameter.location + rangeOfAccessTokenParameter.length;
