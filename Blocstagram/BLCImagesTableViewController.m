@@ -139,8 +139,11 @@
 
 #pragma mark - Infinite scroll view delegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self infiniteScrollIfNecessary];
+-(void) scrollViewDidScroll:(UIScrollView*)scrollView{
+
+    if ( scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height ) {
+        [self infiniteScrollIfNecessary];
+    }
 }
 
 @end
