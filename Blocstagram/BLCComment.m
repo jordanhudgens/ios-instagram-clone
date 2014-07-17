@@ -11,4 +11,16 @@
 
 @implementation BLCComment
 
+- (instancetype) initWithDictionary:(NSDictionary *)commentDictionary {
+    self = [super init];
+    
+    if (self) {
+        self.idNumber = commentDictionary[@"id"];
+        self.text = commentDictionary[@"text"];
+        self.from = [[BLCUser alloc] initWithDictionary:commentDictionary[@"from"]];
+    }
+    
+    return self;
+}
+
 @end
