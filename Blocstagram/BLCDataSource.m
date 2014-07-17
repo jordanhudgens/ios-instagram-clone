@@ -19,6 +19,7 @@
 @property (nonatomic, assign) BOOL isRefreshing;
 @property (nonatomic, assign) BOOL isLoadingOlderItems;
 @property (nonatomic, strong) NSString *accessToken;
+@property (nonatomic, assign) BOOL thereAreNoMoreOlderMessages;
 
 @end
 
@@ -78,6 +79,8 @@
 #pragma mark - API call
 
 - (void) requestNewItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
+    self.thereAreNoMoreOlderMessages = NO;
+    
     if (self.isRefreshing == NO) {
         self.isRefreshing = YES;
         
@@ -95,16 +98,19 @@
 }
 
 - (void) requestOldItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
-    if (self.isLoadingOlderItems == NO) {
+    if (self.isLoadingOlderItems == NO && self.thereAreNoMoreOlderMessages == NO) {
         self.isLoadingOlderItems = YES;
         
-        // Need to add images here
+        NSString *maxID = [[self.mediaItems lastObject] idNumber];
+        NSDictionary *parameters = @{@"max_id": maxID};
         
-        self.isLoadingOlderItems = NO;
-        
-        if (completionHandler) {
-            completionHandler(nil);
-        }
+        [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
+            self.isLoadingOlderItems = NO;
+            
+            if (completionHandler) {
+                completionHandler(error);
+            }
+        }];
     }
 }
 
@@ -189,6 +195,12 @@
         NSIndexSet *indexSetOfNewObjects = [NSIndexSet indexSetWithIndexesInRange:rangeOfIndexes];
         
         [mutableArrayWithKVO insertObjects:tmpMediaItems atIndexes:indexSetOfNewObjects];
+    } else if (parameters[@"max_id"]) {
+        if (tmpMediaItems.count == 0) {
+            self.thereAreNoMoreOlderMessages = YES;
+        }
+        
+        [mutableArrayWithKVO addObjectsFromArray:tmpMediaItems];
     } else {
         [self willChangeValueForKey:@"mediaItems"];
         self.mediaItems = tmpMediaItems;
