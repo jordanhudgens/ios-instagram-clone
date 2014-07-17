@@ -23,6 +23,8 @@
 
 @end
 
+static NSString *savedId;
+
 @implementation BLCDataSource
 
 + (instancetype) sharedInstance {
@@ -81,10 +83,16 @@
 - (void) requestNewItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
     self.thereAreNoMoreOlderMessages = NO;
     
+    
     if (self.isRefreshing == NO) {
         self.isRefreshing = YES;
         
         NSString *minID = [[self.mediaItems firstObject] idNumber];
+        
+        if (minID == nil) {
+            minID = savedId;
+        }
+        
         NSDictionary *parameters = @{@"min_id": minID};
         
         [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
@@ -111,6 +119,8 @@
                 completionHandler(error);
             }
         }];
+        
+        
     }
 }
 
@@ -178,14 +188,23 @@
     NSArray *mediaArray = feedDictionary[@"data"];
     
     NSMutableArray *tmpMediaItems = [NSMutableArray array];
-    
+        
     for (NSDictionary *mediaDictionary in mediaArray) {
         BLCMedia *mediaItem = [[BLCMedia alloc] initWithDictionary:mediaDictionary];
         
         if (mediaItem) {
+            
             [tmpMediaItems addObject:mediaItem];
+            
+            if (mediaItem == [tmpMediaItems firstObject]) {
+                savedId = mediaItem.idNumber;
+            }
+            
             [self downloadImageForMediaItem:mediaItem];
+            
         }
+        
+        break;
     }
     
     NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
