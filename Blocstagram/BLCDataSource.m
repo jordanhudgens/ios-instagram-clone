@@ -81,13 +81,16 @@
     if (self.isRefreshing == NO) {
         self.isRefreshing = YES;
         
-        // Need to add images here
+        NSString *minID = [[self.mediaItems firstObject] idNumber];
+        NSDictionary *parameters = @{@"min_id": minID};
         
-        self.isRefreshing = NO;
-        
-        if (completionHandler) {
-            completionHandler(nil);
-        }
+        [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
+            self.isRefreshing = NO;
+            
+            if (completionHandler) {
+                completionHandler(error);
+            }
+        }];
     }
 }
 
@@ -115,13 +118,13 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:BLCLoginViewControllerDidGetAccessTokenNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.accessToken = note.object;
         
-        [self populateDataWithParameters:nil];
+        [self populateDataWithParameters:nil completionHandler:nil];
     }];
 }
 
 #pragma mark - Data call from the IG API
 
-- (void) populateDataWithParameters:(NSDictionary *)parameters {
+- (void) populateDataWithParameters:(NSDictionary *)parameters completionHandler:(BLCNewItemCompletionBlock)completionHandler {
     if (self.accessToken) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSMutableString *urlString = [NSMutableString stringWithFormat:@"https://api.instagram.com/v1/users/self/feed?access_token=%@", self.accessToken];
@@ -139,12 +142,25 @@
                 NSError *webError;
                 NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&webError];
                 
-                NSError *jsonError;
-                NSDictionary *feedDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
-                
-                if (feedDictionary) {
+                if (responseData) {
+                    NSError *jsonError;
+                    NSDictionary *feedDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
+                    
+                    if (feedDictionary) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self parseDataFromFeedDictionary:feedDictionary fromRequestWithParameters:parameters];
+                            if (completionHandler) {
+                                completionHandler(nil);
+                            }
+                        });
+                    } else if (completionHandler) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completionHandler(jsonError);
+                        });
+                    }
+                } else if (completionHandler) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self parseDataFromFeedDictionary:feedDictionary fromRequestWithParameters:parameters];
+                        completionHandler(webError);
                     });
                 }
             }
@@ -166,9 +182,18 @@
         }
     }
     
-    [self willChangeValueForKey:@"mediaItems"];
-    self.mediaItems = tmpMediaItems;
-    [self didChangeValueForKey:@"mediaItems"];
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    
+    if (parameters[@"min_id"]) {
+        NSRange rangeOfIndexes = NSMakeRange(0, tmpMediaItems.count);
+        NSIndexSet *indexSetOfNewObjects = [NSIndexSet indexSetWithIndexesInRange:rangeOfIndexes];
+        
+        [mutableArrayWithKVO insertObjects:tmpMediaItems atIndexes:indexSetOfNewObjects];
+    } else {
+        [self willChangeValueForKey:@"mediaItems"];
+        self.mediaItems = tmpMediaItems;
+        [self didChangeValueForKey:@"mediaItems"];
+    }
 }
 
 - (void) downloadImageForMediaItem:(BLCMedia *)mediaItem {
