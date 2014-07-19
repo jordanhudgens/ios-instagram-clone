@@ -47,6 +47,7 @@ static NSString *savedId;
         if (!self.accessToken) {
             [self registerForAccessTokenNotification];
         } else {
+            
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *fullPath = [self pathForFilename:NSStringFromSelector(@selector(mediaItems))];
                 NSArray *storedMediaItems = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
@@ -126,6 +127,7 @@ static NSString *savedId;
         }];
     }
 }
+
 
 - (void) requestOldItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
     if (self.isLoadingOlderItems == NO && self.thereAreNoMoreOlderMessages == NO) {
