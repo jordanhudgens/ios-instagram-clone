@@ -11,6 +11,7 @@
 #import "BLCMedia.h"
 #import "BLCComment.h"
 #import "BLCLoginViewController.h"
+#import <UICKeyChainStore.h>
 
 @interface BLCDataSource () {
     NSMutableArray *_mediaItems;
@@ -41,7 +42,13 @@ static NSString *savedId;
     self = [super init];
     
     if (self) {
-        [self registerForAccessTokenNotification];
+        self.accessToken = [UICKeyChainStore stringForKey:@"access token"];
+        
+        if (!self.accessToken) {
+            [self registerForAccessTokenNotification];
+        } else {
+            [self populateDataWithParameters:nil completionHandler:nil];
+        }
     }
     
     return self;
@@ -134,6 +141,8 @@ static NSString *savedId;
     [[NSNotificationCenter defaultCenter] addObserverForName:BLCLoginViewControllerDidGetAccessTokenNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.accessToken = note.object;
         
+        [UICKeyChainStore setString:self.accessToken forKey:@"access token"];
+        
         [self populateDataWithParameters:nil completionHandler:nil];
     }];
 }
@@ -203,8 +212,6 @@ static NSString *savedId;
             [self downloadImageForMediaItem:mediaItem];
             
         }
-        
-        break;
     }
     
     NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
