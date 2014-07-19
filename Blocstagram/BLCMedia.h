@@ -10,7 +10,7 @@
 
 @class BLCUser; // Using the @classs call instead of import to block circular inclusion
 
-@interface BLCMedia : NSObject
+@interface BLCMedia : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) BLCUser *user;

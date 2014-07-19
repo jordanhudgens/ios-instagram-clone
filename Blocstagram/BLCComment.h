@@ -10,7 +10,7 @@
 
 @class BLCUser;
 
-@interface BLCComment : NSObject
+@interface BLCComment : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) BLCUser *from;
