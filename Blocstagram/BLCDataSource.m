@@ -59,7 +59,6 @@ static NSString *savedId;
                         [self willChangeValueForKey:@"mediaItems"];
                         self.mediaItems = mutableMediaItems;
                         [self didChangeValueForKey:@"mediaItems"];
-                    } else {
                         [self populateDataWithParameters:nil completionHandler:nil];
                     }
                 });
