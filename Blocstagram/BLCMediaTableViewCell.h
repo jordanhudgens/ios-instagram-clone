@@ -13,6 +13,7 @@
 @protocol BLCMediaTableViewCellDelegate <NSObject>
 
 - (void) cell:(BLCMediaTableViewCell *)cell didTapImageView:(UIImageView *)imageView;
+- (void) cell:(BLCMediaTableViewCell *)cell didLongPressImageView:(UIImageView *)imageView;
 
 @end
 
