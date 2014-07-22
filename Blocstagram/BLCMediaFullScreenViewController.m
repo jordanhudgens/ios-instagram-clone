@@ -63,6 +63,22 @@
     [self.tap requireGestureRecognizerToFail:self.doubleTap];
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
+    
+    UIView* rightButtonView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 110, 50)];
+    
+    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    rightButton.backgroundColor = [UIColor clearColor];
+    rightButton.frame = rightButtonView.frame;
+    [rightButton setTitle:@"Share" forState:UIControlStateNormal];
+    rightButton.tintColor = [UIColor brownColor];
+    rightButton.autoresizesSubviews = YES;
+    rightButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
+    //[rightButton addTarget:self action:@selector(tapFired:) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addSubview:rightButton];
+    
+    UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc]initWithCustomView:rightButtonView];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+    
 }
 
 - (void)didReceiveMemoryWarning
