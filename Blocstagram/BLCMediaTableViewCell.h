@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class BLCMedia;
+@class BLCMedia, BLCMediaTableViewCell;
+
+@protocol BLCMediaTableViewCellDelegate <NSObject>
+
+- (void) cell:(BLCMediaTableViewCell *)cell didTapImageView:(UIImageView *)imageView;
+
+@end
+
 
 @interface BLCMediaTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) BLCMedia *mediaItem;
+@property (nonatomic, weak) id <BLCMediaTableViewCellDelegate> delegate;
 
 - (BLCMedia *)mediaItem;
 
