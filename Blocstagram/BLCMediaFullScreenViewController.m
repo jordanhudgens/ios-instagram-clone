@@ -30,16 +30,6 @@
     return self;
 }
 
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,21 +54,15 @@
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
     
-    UIView* rightButtonView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 110, 50)];
+    UINavigationBar *navbar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(sharedButtonPressed)];
+    [self.view addSubview:navbar];
     
-    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    rightButton.backgroundColor = [UIColor clearColor];
-    rightButton.frame = rightButtonView.frame;
-    [rightButton setTitle:@"Share" forState:UIControlStateNormal];
-    rightButton.tintColor = [UIColor brownColor];
-    rightButton.autoresizesSubviews = YES;
-    rightButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
-    //[rightButton addTarget:self action:@selector(tapFired:) forControlEvents:UIControlEventTouchUpInside];
-    [rightButton addSubview:rightButton];
+//    self.navigationItem.rightBarButtonItem = shareItem;
     
-    UIBarButtonItem* rightBarButton = [[UIBarButtonItem alloc]initWithCustomView:rightButtonView];
-    self.navigationItem.rightBarButtonItem = rightBarButton;
-    
+    UINavigationItem *navigItem = [[UINavigationItem alloc] init];
+    navigItem.rightBarButtonItem = shareItem;
+    navbar.items = [NSArray arrayWithObjects: navigItem,nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,17 +70,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
@@ -172,6 +145,10 @@
     } else {
         [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
     }
+}
+
+- (void) sharedButtonPressed {
+    NSLog(@"Button pressed");
 }
 
 @end
