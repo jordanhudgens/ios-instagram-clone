@@ -215,7 +215,7 @@ static NSString *savedId;
                 savedId = mediaItem.idNumber;
             }
             
-            [self downloadImageForMediaItem:mediaItem];
+//            [self downloadImageForMediaItem:mediaItem];
             
         }
     }
@@ -259,15 +259,35 @@ static NSString *savedId;
 
 - (void) downloadImageForMediaItem:(BLCMedia *)mediaItem {
     if (mediaItem.mediaURL && !mediaItem.image) {
+        mediaItem.downloadState = BLCMediaDownloadStateDownloadInProgress;
         [self.instagramOperationManager GET:mediaItem.mediaURL.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[UIImage class]]) {
                 mediaItem.image = responseObject;
+                mediaItem.downloadState = BLCMediaDownloadStateHasImage;
                 NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
                 NSUInteger index = [mutableArrayWithKVO indexOfObject:mediaItem];
                 [mutableArrayWithKVO replaceObjectAtIndex:index withObject:mediaItem];
+            } else {
+                mediaItem.downloadState = BLCMediaDownloadStateHasImage;
             }
         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error downloading image: %@", error);
+            
+            mediaItem.downloadState = BLCMediaDownloadStateNonRecoverableError;
+            
+            if ([error.domain isEqualToString:NSURLErrorDomain]) {
+                if (error.code == NSURLErrorTimedOut ||
+                    error.code == NSURLErrorCancelled ||
+                    error.code == NSURLErrorCannotConnectToHost ||
+                    error.code == NSURLErrorNetworkConnectionLost ||
+                    error.code == NSURLErrorNotConnectedToInternet ||
+                    error.code == kCFURLErrorInternationalRoamingOff ||
+                    error.code == kCFURLErrorCallIsActive ||
+                    error.code == kCFURLErrorDataNotAllowed ||
+                    error.code == kCFURLErrorRequestBodyStreamExhausted) {
+                    mediaItem.downloadState = BLCMediaDownloadStateNeedsImage;
+                }
+            }
         }];
     }
 }
