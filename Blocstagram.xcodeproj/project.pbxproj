@@ -39,6 +39,7 @@
 		84CED0A4196DCF61007AFA71 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84CED09A196DCF61007AFA71 /* 9.jpg */; };
 		84CED0A5196DCF61007AFA71 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84CED09B196DCF61007AFA71 /* 10.jpg */; };
 		84CED0A8196DCFF4007AFA71 /* BLCImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CED0A7196DCFF4007AFA71 /* BLCImagesTableViewController.m */; };
+		84D3014619818A7A00E35F25 /* BLCMediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3014519818A7A00E35F25 /* BLCMediaHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		84CED09B196DCF61007AFA71 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
 		84CED0A6196DCFF4007AFA71 /* BLCImagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCImagesTableViewController.h; sourceTree = "<group>"; };
 		84CED0A7196DCFF4007AFA71 /* BLCImagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCImagesTableViewController.m; sourceTree = "<group>"; };
+		84D3014419818A7A00E35F25 /* BLCMediaHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMediaHelper.h; sourceTree = "<group>"; };
+		84D3014519818A7A00E35F25 /* BLCMediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCMediaHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +186,8 @@
 				84C1A896197E0FCE00F5C435 /* BLCMediaFullScreenViewController.m */,
 				84C1A898197EC02F00F5C435 /* BLCMediaFullScreenAnimator.h */,
 				84C1A899197EC02F00F5C435 /* BLCMediaFullScreenAnimator.m */,
+				84D3014419818A7A00E35F25 /* BLCMediaHelper.h */,
+				84D3014519818A7A00E35F25 /* BLCMediaHelper.m */,
 			);
 			path = Blocstagram;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 				84C1A89A197EC02F00F5C435 /* BLCMediaFullScreenAnimator.m in Sources */,
 				84CED073196DCE1B007AFA71 /* BLCAppDelegate.m in Sources */,
 				84CED06F196DCE1B007AFA71 /* main.m in Sources */,
+				84D3014619818A7A00E35F25 /* BLCMediaHelper.m in Sources */,
 				84CED0A8196DCFF4007AFA71 /* BLCImagesTableViewController.m in Sources */,
 				84C1A950196F4CF8003A271D /* BLCMedia.m in Sources */,
 				84C1A953196F4EC0003A271D /* BLCComment.m in Sources */,

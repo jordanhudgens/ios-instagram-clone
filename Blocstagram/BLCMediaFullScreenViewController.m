@@ -8,6 +8,7 @@
 
 #import "BLCMediaFullScreenViewController.h"
 #import "BLCMedia.h"
+#import "BLCMediaHelper.h"
 
 @interface BLCMediaFullScreenViewController () <UIScrollViewDelegate>
 
@@ -149,6 +150,7 @@
 
 - (void) sharedButtonPressed {
     NSLog(@"Button pressed");
+    [BLCMediaHelper mediaItemToShare:self withMedia:self.media];
 }
 
 @end
