@@ -20,6 +20,8 @@
 
 @property (nonatomic, weak) UIImageView *lastTappedImageView;
 
+@property (nonatomic) BOOL isDecelerating;
+
 @end
 
 @implementation BLCImagesTableViewController
@@ -77,7 +79,8 @@
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     BLCMedia *mediaItem = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
-    if (mediaItem.downloadState == BLCMediaDownloadStateNeedsImage) {
+    NSLog(@"content offset %f", self.tableView.contentOffset.y);
+    if (mediaItem.downloadState == BLCMediaDownloadStateNeedsImage && (self.tableView.isDecelerating || self.tableView.contentOffset.y == -64)) {
         [[BLCDataSource sharedInstance] downloadImageForMediaItem:mediaItem];
     }
 }
@@ -130,6 +133,11 @@
             [self.tableView endUpdates];
         }
     }
+}
+
+- (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"decelerating %f", scrollView.decelerationRate);
+//    self.isDecelerating = [UIS]
 }
 
 #pragma mark - Pull to refresh
