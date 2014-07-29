@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BLCLikeButton.h"
 
 typedef NS_ENUM(NSInteger, BLCMediaDownloadState) {
     BLCMediaDownloadStateNeedsImage             = 0,
@@ -26,6 +27,7 @@ typedef NS_ENUM(NSInteger, BLCMediaDownloadState) {
 @property (nonatomic, assign) BLCMediaDownloadState downloadState;
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) NSArray *comments;
+@property (nonatomic, assign) BLCLikeButton *likeState;
 
 - (instancetype) initWithDictionary:(NSDictionary *)mediaDictionary;
 

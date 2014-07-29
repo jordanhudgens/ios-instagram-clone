@@ -73,7 +73,6 @@
     
     [self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     
-//    Updating the Media Model to Track Like State
     
 }
 
