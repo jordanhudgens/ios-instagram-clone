@@ -122,11 +122,16 @@ static NSString *savedId;
         
         NSString *minID = [[self.mediaItems firstObject] idNumber];
         
-        if (minID == nil) {
+        NSDictionary *parameters;
+        if (minID == nil && savedId == nil) {
+            parameters = @{};
+        }
+        else if(minID==nil){
             minID = savedId;
+            parameters = @{@"min_id": minID};
         }
         
-        NSDictionary *parameters = @{@"min_id": minID};
+//         = @{@"min_id": minID};
         
         [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
             self.isRefreshing = NO;
