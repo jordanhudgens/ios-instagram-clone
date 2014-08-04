@@ -36,6 +36,14 @@
             self.caption = @"";
         }
         
+//        NSDictionary *likesDictionary = mediaDictionary[@"likes"];
+//        
+//        if ([likesDictionary isKindOfClass:[NSDictionary class]]) {
+//            self.likes = likesDictionary[@"text"];
+//        } else {
+//            self.likes = @"";
+//        }
+        
         NSMutableArray *commentsArray = [NSMutableArray array];
         
         for (NSDictionary *commentDictionary in mediaDictionary[@"comments"][@"data"]) {
