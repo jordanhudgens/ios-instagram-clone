@@ -22,6 +22,8 @@
 
 @property (nonatomic) BOOL isDecelerating;
 
+@property (nonatomic, strong) NSDictionary *cachedHeights;
+
 @end
 
 @implementation BLCImagesTableViewController
@@ -168,12 +170,14 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BLCMedia *item = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
-    if (item.image) {
-        return 350;
-    } else {
-        return 150;
+    
+    BLCMedia* item = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+    if (item!=nil && [self.cachedHeights objectForKey:item.idNumber]!=nil) {
+        return ((NSNumber*)[self.cachedHeights objectForKey:item.idNumber]).floatValue;
     }
+    
+    return 370;
+    
 }
 
 #pragma mark - BLCMediaTableViewCellDelgate
