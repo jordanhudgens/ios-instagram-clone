@@ -71,6 +71,10 @@ static NSString *savedId;
                         self.mediaItems = mutableMediaItems;
                         [self didChangeValueForKey:@"mediaItems"];
                         [self populateDataWithParameters:nil completionHandler:nil];
+                    }else{
+                        [[BLCDataSource sharedInstance] requestNewItemsWithCompletionHandler:^(NSError *error) {
+                            
+                        }];
                     }
                 });
             });
@@ -130,8 +134,6 @@ static NSString *savedId;
             minID = savedId;
             parameters = @{@"min_id": minID};
         }
-        
-//         = @{@"min_id": minID};
         
         [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
             self.isRefreshing = NO;

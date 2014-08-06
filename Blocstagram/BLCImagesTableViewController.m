@@ -22,7 +22,7 @@
 
 @property (nonatomic) BOOL isDecelerating;
 
-@property (nonatomic, strong) NSDictionary *cachedHeights;
+@property (nonatomic, strong) NSMutableDictionary *cachedHeights;
 
 @end
 
@@ -53,6 +53,9 @@
     [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
     
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
+    self.cachedHeights = [[NSMutableDictionary alloc] init];
+    
+    [self.refreshControl beginRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,6 +69,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.items!=nil && [self items].count >0) {
+//        [self.refreshControl endRefreshing];
+    }
     return [self items].count;
 }
 
@@ -89,7 +95,11 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     BLCMedia *item = [self items][indexPath.row];
-    return [BLCMediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
+    CGFloat height = [BLCMediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
+    
+    [self.cachedHeights setObject:[NSNumber numberWithFloat:height] forKey:item.idNumber];
+    
+    return height;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -133,6 +143,9 @@
             }
             
             [self.tableView endUpdates];
+        }
+        if ([BLCDataSource sharedInstance].mediaItems!=nil && [BLCDataSource sharedInstance].mediaItems.count>0) {
+            [self.refreshControl endRefreshing];
         }
     }
 }
