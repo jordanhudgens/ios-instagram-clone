@@ -10,29 +10,29 @@
 	<string>Blocstagram</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>36A0FF85-6A27-4D4D-850A-9B8DCB22E9F6</key>
+		<key>201ACA7852E2F765AB8818E77B73A87D3BE8E655</key>
 		<string>https://github.com/jordanhudgens/ios-instagram-clone.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Blocstagram.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>36A0FF85-6A27-4D4D-850A-9B8DCB22E9F6</key>
+		<key>201ACA7852E2F765AB8818E77B73A87D3BE8E655</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/jordanhudgens/ios-instagram-clone.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>36A0FF85-6A27-4D4D-850A-9B8DCB22E9F6</string>
+	<string>201ACA7852E2F765AB8818E77B73A87D3BE8E655</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>36A0FF85-6A27-4D4D-850A-9B8DCB22E9F6</string>
+			<string>201ACA7852E2F765AB8818E77B73A87D3BE8E655</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Blocstagram</string>
 		</dict>
