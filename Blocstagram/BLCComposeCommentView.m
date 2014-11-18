@@ -13,8 +13,13 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIButton *button;
 
+@end
+
+@implementation BLCComposeCommentView
+
 - (id)initWithFrame:(CGRect)frame
 {
+    
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
