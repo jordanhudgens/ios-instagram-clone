@@ -24,7 +24,7 @@
 @property (nonatomic, weak) UIImageView *lastTappedImageView;
 @property (nonatomic, weak) UIView *lastSelectedCommentView;
 @property (nonatomic, assign) CGFloat lastKeyboardAdjustment;
-
+@property (nonatomic, strong) UIPopoverController *cameraPopover;
 @property (nonatomic) BOOL isDecelerating;
 
 @property (nonatomic, strong) NSMutableDictionary *cachedHeights;
@@ -76,6 +76,11 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(imageDidFinish:)
+                                                 name:BLCImageFinishedNotification
+                                               object:nil];
+    
     self.cachedHeights = [[NSMutableDictionary alloc] init];
     
     [self.refreshControl beginRefreshing];
@@ -104,7 +109,13 @@
     
     if (imageVC) {
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:imageVC];
-        [self presentViewController:nav animated:YES completion:nil];
+        if (isPhone) {
+            [self presentViewController:nav animated:YES completion:nil];
+        } else {
+            self.cameraPopover = [[UIPopoverController alloc] initWithContentViewController:nav];
+            self.cameraPopover.popoverContentSize = CGSizeMake(320, 568);
+            [self.cameraPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
     }
     return;
 }
@@ -115,7 +126,12 @@
         
         [nav pushViewController:postVC animated:YES];
     } else {
-        [nav dismissViewControllerAnimated:YES completion:nil];
+        if (isPhone) {
+            [nav dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            [self.cameraPopover dismissPopoverAnimated:YES];
+            self.cameraPopover = nil;
+        }
     }
 }
 
@@ -264,8 +280,12 @@
 - (void) cell:(BLCMediaTableViewCell *)cell didTapImageView:(UIImageView *)imageView {
     self.lastTappedImageView = imageView;
     BLCMediaFullScreenViewController *fullScreenVC = [[BLCMediaFullScreenViewController alloc] initWithMedia:cell.mediaItem];
-    fullScreenVC.transitioningDelegate = self;
-    fullScreenVC.modalPresentationStyle = UIModalPresentationCustom;
+    if (isPhone) {
+        fullScreenVC.transitioningDelegate = self;
+        fullScreenVC.modalPresentationStyle = UIModalPresentationCustom;
+    } else {
+        fullScreenVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
     [self presentViewController:fullScreenVC animated:YES completion:nil];
 }
 
@@ -389,5 +409,15 @@
     [self handleImage:image withNavigationController:imageLibraryViewController.navigationController];
 }
 
+#pragma mark - Popover Handling
+
+- (void) imageDidFinish:(NSNotification *)notification {
+    if (isPhone) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.cameraPopover dismissPopoverAnimated:YES];
+        self.cameraPopover = nil;
+    }
+}
 
 @end
