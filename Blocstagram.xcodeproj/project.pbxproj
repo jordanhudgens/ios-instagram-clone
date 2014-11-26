@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		76EC8D1D70764BBDB10020E2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EABC4B02AF43EC81D5ED52 /* libPods.a */; };
 		843CCD5E1976DB1000AEDA34 /* BLCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843CCD5D1976DB1000AEDA34 /* BLCLoginViewController.m */; };
+		8488930D1A257B0200D90DE2 /* BLCPostToInstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8488930C1A257B0200D90DE2 /* BLCPostToInstagramViewController.m */; };
 		8488A7DE1986D0B000378934 /* BLCCircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8488A7DD1986D0B000378934 /* BLCCircleSpinnerView.m */; };
 		8488A7E11986DA7600378934 /* BLCLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8488A7E01986DA7600378934 /* BLCLikeButton.m */; };
 		8493234B1A23B60400C35F3B /* BLCCropBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493234A1A23B60400C35F3B /* BLCCropBox.m */; };
@@ -66,6 +67,8 @@
 		75296526EE974D94A0259ACD /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		843CCD5C1976DB1000AEDA34 /* BLCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCLoginViewController.h; sourceTree = "<group>"; };
 		843CCD5D1976DB1000AEDA34 /* BLCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCLoginViewController.m; sourceTree = "<group>"; };
+		8488930B1A257B0200D90DE2 /* BLCPostToInstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCPostToInstagramViewController.h; sourceTree = "<group>"; };
+		8488930C1A257B0200D90DE2 /* BLCPostToInstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCPostToInstagramViewController.m; sourceTree = "<group>"; };
 		8488A7DC1986D0B000378934 /* BLCCircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCCircleSpinnerView.h; sourceTree = "<group>"; };
 		8488A7DD1986D0B000378934 /* BLCCircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCCircleSpinnerView.m; sourceTree = "<group>"; };
 		8488A7DF1986DA7600378934 /* BLCLikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCLikeButton.h; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				8493234D1A23B85000C35F3B /* BLCCropImageViewController.m */,
 				8493234F1A23B96C00C35F3B /* BLCImageLibraryViewController.h */,
 				849323501A23B96C00C35F3B /* BLCImageLibraryViewController.m */,
+				8488930B1A257B0200D90DE2 /* BLCPostToInstagramViewController.h */,
+				8488930C1A257B0200D90DE2 /* BLCPostToInstagramViewController.m */,
 			);
 			path = Blocstagram;
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8488930D1A257B0200D90DE2 /* BLCPostToInstagramViewController.m in Sources */,
 				8488A7E11986DA7600378934 /* BLCLikeButton.m in Sources */,
 				84C1A94D196F4BC7003A271D /* BLCUser.m in Sources */,
 				84C1A89A197EC02F00F5C435 /* BLCMediaFullScreenAnimator.m in Sources */,
