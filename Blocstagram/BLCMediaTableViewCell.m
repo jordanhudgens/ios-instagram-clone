@@ -74,9 +74,9 @@ static NSParagraphStyle *paragraphStyle;
             view.translatesAutoresizingMaskIntoConstraints = NO;
         }
         
-        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likeButton, _commentView);
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mediaImageView]|" options:kNilOptions metrics:nil views:viewDictionary]];
-        
+//        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likeButton, _commentView);
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mediaImageView]|" options:kNilOptions metrics:nil views:viewDictionary]];
+        [self createConstraints];
         
     }
     return self;
@@ -240,7 +240,18 @@ static NSParagraphStyle *paragraphStyle;
 }
 
 - (void) createPadConstraints {
-    [self createConstraints];
+//    [self createConstraints];
+//    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.contentView
+//                                                                  attribute:NSLayoutAttributeCenterX
+//                                                                  relatedBy:0
+//                                                                     toItem:_mediaImageView
+//                                                                  attribute:NSLayoutAttributeCenterX
+//                                                                 multiplier:1
+//                                                                   constant:0]];
+
+    NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likeButton, _commentView);
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_mediaImageView(==320)]" options:kNilOptions metrics:nil views:viewDictionary]];
     [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.contentView
                                                                   attribute:NSLayoutAttributeCenterX
                                                                   relatedBy:0

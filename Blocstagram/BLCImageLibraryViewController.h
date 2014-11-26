@@ -16,7 +16,7 @@
 
 @end
 
-@interface BLCImageLibraryViewController : UIViewController
+@interface BLCImageLibraryViewController : UICollectionViewController
 
 @property (nonatomic, weak) NSObject <BLCImageLibraryViewControllerDelegate> *delegate;
 
